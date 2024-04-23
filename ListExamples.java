@@ -19,23 +19,10 @@ class DogChecker implements StringChecker {
 
 class ListExamples {
 
-  // Returns a new list that has all the elements of the input list for which
-  // the StringChecker returns true, and not the elements that return false, in
-  // the same order they appeared in the input list;
-  // Bug: list filter reverses the list rather than keeping them in same order
-  static List<String> filter(List<String> list, StringChecker sc) {
-    List<String> result = new ArrayList<>();
-    for(String s: list) {
-      if(sc.checkString(s)) {
-        // problem line, adds it to front of list instead of rear
-        result.add(0, s);
-      }
-    }
-    return result;
-  }
+
 
   //fixed
-  static List<String> filter2(List<String> list, StringChecker sc) {
+  static List<String> filter(List<String> list, StringChecker sc) {
     List<String> result = new ArrayList<>();
     for(String s: list) {
       if(sc.checkString(s)) {
