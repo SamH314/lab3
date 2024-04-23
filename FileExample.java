@@ -38,18 +38,26 @@ public class FileExample {
 
   */
 
-	static List<File> getFiles(File start) throws IOException {
-	  File f = start;
-	  List<File> result = new ArrayList<>();
-	  result.add(start);
-	  if(f.isDirectory()) {
-	    File[] paths = f.listFiles();
-	    for(File subFile: paths) {
-	      result.add(subFile);
-	    }
-	  }
-	  return result;
-	}
+  static List<File> getFiles(File start) throws IOException {
+    List<File> result = new ArrayList<>();
+    if (start.isDirectory()) {
+      result.add(start);
+      File[] files = start.listFiles();
+      if (files != null) {
+        for (File file : files) {
+          if (file.isDirectory()) {
+            result.add(file);
+            result.addAll(getFiles(file));
+          } else {
+            result.add(file);
+          }
+        }
+      }
+    } else {
+      result.add(start);
+    }
+    return result;
+  }
 }
 
 
