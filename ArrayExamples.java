@@ -4,10 +4,10 @@ public class ArrayExamples {
 
   // Changes the input array to be in reversed order
   static void reverseInPlace(int[] arr) {
-    for(int i = 0; i < (arr.length / 2); i += 1) {
-    final int oldValue = arr[i];
-    arr[i] = arr[arr.length - i - 1];
-    arr[arr.length - i - 1] = oldValue;
+    for(int i = 0; i < arr.length/2; i += 1) {
+      int temp = arr[i];
+      arr[i] = arr[arr.length - i - 1];
+      arr[arr.length - i - 1] = temp;
     }
   }
 
@@ -16,9 +16,9 @@ public class ArrayExamples {
   static int[] reversed(int[] arr) {
     int[] newArray = new int[arr.length];
     for(int i = 0; i < arr.length; i += 1) {
-      newArray[i] = arr[arr.length - i - 1];//newArray should be the one being updated
+      newArray[i] = arr[arr.length - i - 1];
     }
-    return newArray;//should return newArray, not arr
+    return newArray;
   }
 
   // Averages the numbers in the array (takes the mean), but leaves out the
@@ -27,24 +27,17 @@ public class ArrayExamples {
   static double averageWithoutLowest(double[] arr) {
     if(arr.length < 2) { return 0.0; }
     double lowest = arr[0];
-    int lowestCount = 1; // Track the count of lowest value
     for(double num: arr) {
-      if(num < lowest) {
-        lowest = num;
-        lowestCount = 1; // Reset the count if a new lowest value is found
-      } else if (num == lowest) {
-        lowestCount++; // Increment the count if the current number equals the lowest value
-      }
+      if(num < lowest) { lowest = num; }
     }
     double sum = 0;
     for(double num: arr) {
-      if(num != lowest || lowestCount > 1) { // Include one occurrence of lowest value
-        sum += num;
-      }
+      sum += num;
     }
-    return sum / (arr.length - lowestCount);
+    return (sum - lowest) / (arr.length - 1);
+  }
 }
 
 
-}
+
 
